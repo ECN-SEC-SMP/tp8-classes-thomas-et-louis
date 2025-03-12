@@ -1,15 +1,12 @@
 #include "Animal.h"
 
 
-#include <stdlib.h>
-#include <time.h>
-
-
 Animal::Animal(int maxX, int maxY)
 {
     srand(time(NULL));
     x = rand() % maxX;
     y = rand() % maxY;
+    this->setAttaque();
 }
 
 Animal::Animal(int maxX, int maxY, int x, int y)
@@ -20,7 +17,8 @@ Animal::Animal(int maxX, int maxY, int x, int y)
     }
     if(this->y > maxY){
         this->y = maxY;
-    }    
+    }
+    this->setAttaque();
 }
 
 std::string Animal::getNom() const

@@ -1,6 +1,9 @@
 #pragma once
 
 #include <string>
+#include <stdlib.h>
+#include <time.h>
+
 #include "Attaque.h"
 
 
@@ -15,6 +18,7 @@ protected :
 public:
     Animal(int maxX, int maxY);
     Animal(int maxX, int maxY, int x, int y);
+    virtual ~Animal() = default;
     std::string getNom() const;
     int getX() const;
     int getY() const;
