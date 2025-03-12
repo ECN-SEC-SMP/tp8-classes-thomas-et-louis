@@ -3,7 +3,7 @@
 Lion::Lion(int maxX, int maxY)
     : Animal(maxX, maxY)
 {
-    this->nom = "L";
+    this->nom = "🦁";
     this->setVivant(true);
 }
 

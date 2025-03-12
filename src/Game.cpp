@@ -50,7 +50,7 @@ void Game::display()
                 auto animal = this->getAnimalFromCoordinates(j, i/2);
                 if (animal != nullptr)
                 {
-                    std::cout << "| " << animal->getNom() << "  ";
+                    std::cout << "| " << animal->getNom() << " ";
                 }
                 else
                 {
@@ -71,18 +71,12 @@ void Game::playOneTurn()
     }
     for (auto &&animal : this->animals)
     {
-        std::cout << animal->getNom() << " at " << animal->getX() << "," << animal->getY() << std::endl;
-    }
-    for (auto &&animal : this->animals)
-    {
         Animal *other_animal = nullptr;
         while ((other_animal = getAnimalFromCoordinates(animal->getX(), animal->getY())) != nullptr && other_animal != animal)
         {
             bool win = animal->attaque(*other_animal);
-            std::cout << animal->getNom() << " vs " << other_animal->getNom() << " -> " << (win ? "win" : "lose") << std::endl;
+            std::cout << animal->getNom() << " vs " << other_animal->getNom() << " -> " << animal->getNom() << (win ? " win" : " lose") << std::endl;
             std::cout << animal->getAttaque().getNomAttaque() << " vs " << other_animal->getAttaque().getNomAttaque() << std::endl;
-            std::cout << animal->getNom() << " at " << animal->getX() << "," << animal->getY() << std::endl;
-            std::cout << other_animal->getNom() << " at " << other_animal->getX() << "," << other_animal->getY() << std::endl;
             std::cout << std::endl;
             if (win)
             {
@@ -95,10 +89,6 @@ void Game::playOneTurn()
             }
         }
         
-    }
-    for (auto &&animal : this->animals)
-    {
-        std::cout << animal->getNom() << " at " << animal->getX() << "," << animal->getY() << std::endl;
     }
     this->display();
 }

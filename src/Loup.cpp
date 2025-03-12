@@ -3,7 +3,7 @@
 Loup::Loup(int maxX, int maxY)
     :Animal(maxX,maxY)
 {
-    this->nom = "W";
+    this->nom = "🐺";
     this->setVivant(true);
 }
 

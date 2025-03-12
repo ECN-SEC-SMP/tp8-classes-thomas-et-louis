@@ -3,7 +3,7 @@
 Ours::Ours(int maxX, int maxY)
     : Animal(maxX, maxY)
 {
-    this->nom = "O";
+    this->nom = "🐻";
     this->setVivant(true);
 }
 

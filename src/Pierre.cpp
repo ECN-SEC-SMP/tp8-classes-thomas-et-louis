@@ -6,7 +6,7 @@
 Pierre::Pierre(int maxX, int maxY)
     : Animal(maxX, maxY)
 {
-    this->nom = "P";
+    this->nom = "🪨 ";
     this->setVivant(false);
 }
 
