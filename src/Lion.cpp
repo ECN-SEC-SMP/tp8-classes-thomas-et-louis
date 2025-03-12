@@ -1,8 +1,5 @@
 #include "Lion.h"
 
-#include <stdlib.h>
-#include <time.h>
-
 Lion::Lion(int maxX, int maxY)
     : Animal(maxX, maxY)
 {
