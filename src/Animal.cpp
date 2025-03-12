@@ -2,7 +2,6 @@
 
 Animal::Animal(int maxX, int maxY)
 {
-    srand(time(NULL));
     x = rand() % maxX;
     y = rand() % maxY;
 }

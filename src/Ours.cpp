@@ -14,8 +14,6 @@ void Ours::setAttaque()
 
 void Ours::deplace(int maxX, int maxY)
 {
-    srand(time(NULL));
-
     int dx = rand() % 2 ? (rand() % 2 ? 1 : -1) : (rand() % 2 ? 2 : -2);
     int dy = rand() % 2 ? (rand() % 2 ? 1 : -1) : (rand() % 2 ? 2 : -2);
     this->x += dx;

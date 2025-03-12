@@ -14,7 +14,6 @@ void Loup::setAttaque()
 
 void Loup::deplace(int maxX, int maxY)
 {
-    srand(time(NULL));
     x = rand() % maxX;
     y = rand() % maxY;
 }

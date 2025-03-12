@@ -5,7 +5,6 @@
 
 Attaque::Attaque()
 {
-    srand(time(NULL));
     this->typeAttaque = rand() % 3;
 }
 

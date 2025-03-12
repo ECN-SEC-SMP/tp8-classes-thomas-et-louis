@@ -15,7 +15,6 @@ void Lion::setAttaque()
 
 void Lion::deplace(int maxX, int maxY)
 {
-    srand(time(NULL));
     int dx = rand() % 2 ? 1 : -1;
     int dy = rand() % 2 ? 1 : -1;
     this->x += dx;

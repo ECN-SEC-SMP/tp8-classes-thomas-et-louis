@@ -15,6 +15,7 @@ class Game
 {
 private:
     std::vector<Animal *> animals;
+    Animal * cells[MAX_X][MAX_Y];
 public:
     /**
      * @brief Construct a new Game object
@@ -44,7 +45,7 @@ public:
      * @brief Play all turns of the game
      * 
      */
-    void playAllTurns();
+    void playAllTurns(int wait_time);
 
     /**
      * @brief Get the Animal From Coordinates object

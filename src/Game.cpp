@@ -1,4 +1,6 @@
+#include <algorithm>
 #include <iostream>
+#include <thread>
 
 #include "Game.h"
 #include "Lion.h"
@@ -11,10 +13,6 @@ Game::Game()
     int _25percent = MAX_X * MAX_Y / 4;
     for (int i = 0; i < _25percent/4; i++)
     {
-        this->animals.push_back(new Lion(MAX_X, MAX_Y));
-    }
-    for (int i = 0; i < _25percent/4; i++)
-    {
         this->animals.push_back(new Ours(MAX_X, MAX_Y));
     }
     for (int i = 0; i < _25percent/4; i++)
@@ -25,6 +23,11 @@ Game::Game()
     {
         this->animals.push_back(new Pierre(MAX_X, MAX_Y));
     }
+    for (int i = 0; i < _25percent/4; i++)
+    {
+        this->animals.push_back(new Lion(MAX_X, MAX_Y));
+    }
+
     this->display();
 }
 
@@ -57,16 +60,43 @@ void Game::display()
             std::cout << "|" << std::endl;
         }
     }
+    std::cout << "Animals: " << this->animals.size() << std::endl << std::endl;
 }
 
 void Game::playOneTurn()
 {
-
+    for (auto &&animal : this->animals)
+    {
+        animal->deplace(MAX_X, MAX_Y);
+    }
+    for (auto &&animal : this->animals)
+    {
+        Animal *other_animal = nullptr;
+        while ((other_animal = getAnimalFromCoordinates(animal->getX(), animal->getY())) != nullptr && other_animal != animal)
+        {
+            bool win = animal->attaque(*other_animal);
+            if (win)
+            {
+                this->animals.erase(std::find(this->animals.begin(), this->animals.end(), other_animal));
+            }
+            else
+            {
+                this->animals.erase(std::find(this->animals.begin(), this->animals.end(), animal));
+            }
+        }
+        
+    }
+    this->display();
 }
 
-void Game::playAllTurns()
+void Game::playAllTurns(int wait_time)
 {
-
+    while (this->animals.size() > 1)
+    {
+        this->playOneTurn();
+        std::this_thread::sleep_for(std::chrono::milliseconds(wait_time));
+    }
+    std::cout << "Winner: " << this->animals[0]->getNom() << std::endl;
 }
 
 
