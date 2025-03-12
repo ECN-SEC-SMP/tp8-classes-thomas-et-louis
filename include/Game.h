@@ -4,8 +4,8 @@
 
 #include "Animal.h"
 
-#define MAX_X 4
-#define MAX_Y 4
+#define MAX_X 10
+#define MAX_Y 10
 
 /**
  * @brief Class representing the Game
