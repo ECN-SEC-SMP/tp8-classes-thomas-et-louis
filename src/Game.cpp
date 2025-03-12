@@ -44,7 +44,15 @@ void Game::display()
         {
             for (int j = 0; j < MAX_X; j++)
             {
-                std::cout << "| " << j << "  ";
+                auto animal = this->getAnimalFromCoordinates(j, i/2);
+                if (animal != nullptr)
+                {
+                    std::cout << "| " << animal->getNom() << "  ";
+                }
+                else
+                {
+                    std::cout << "|    ";
+                }
             }
             std::cout << "|" << std::endl;
         }
@@ -71,5 +79,5 @@ Animal * Game::getAnimalFromCoordinates(int x, int y)
             return i;
         }
     }
-    
+    return nullptr;
 }
