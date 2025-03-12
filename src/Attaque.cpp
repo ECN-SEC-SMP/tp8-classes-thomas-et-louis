@@ -21,9 +21,17 @@ int Attaque::getTypeAttaque() const
 bool Attaque::resoudreAttaque(Attaque &a) const
 {
     int typeAtt = a.getTypeAttaque();
-    return (this->typeAttaque == 0 && typeAtt == 2) 
+    if ((this->typeAttaque == 0 && typeAtt == 2) 
         || (this->typeAttaque == 1 && typeAtt == 0) 
-        || (this->typeAttaque == 2 && typeAtt == 1);
+        || (this->typeAttaque == 2 && typeAtt == 1)) return true;
+    if ((this->typeAttaque == 0 && typeAtt == 1) 
+        || (this->typeAttaque == 1 && typeAtt == 2) 
+        || (this->typeAttaque == 2 && typeAtt == 0)) return false;
+    else
+    {
+        return rand() % 2;
+    }
+    
 }
 
 std::string Attaque::getNomAttaque() const
