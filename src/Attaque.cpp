@@ -39,7 +39,7 @@ std::string Attaque::getNomAttaque() const
     switch (this->typeAttaque)
     {
     case 0:
-        return "Piere";
+        return "Pierre";
         break;
     case 1:
         return "Feuille";
