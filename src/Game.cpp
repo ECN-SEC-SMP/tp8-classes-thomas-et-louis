@@ -64,5 +64,12 @@ void Game::playAllTurns()
 
 Animal * Game::getAnimalFromCoordinates(int x, int y)
 {
+    for (auto &&i : this->animals)
+    {
+        if(i->getX() == x && i->getY() == y)
+        {
+            return i;
+        }
+    }
     
 }
