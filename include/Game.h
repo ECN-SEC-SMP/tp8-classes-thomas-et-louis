@@ -10,11 +10,12 @@
 class Game
 {
 private:
-    Animal * cells[MAX_X][MAX_Y];
+    std::vector<Animal *> animals;
 public:
     Game();
-    ~Game();
+    ~Game() = default;
     void display();
     void playOneTurn();
     void playAllTurns();
+    Animal * getAnimalFromCoordinates(int x, int y);
 };

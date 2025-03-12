@@ -44,4 +44,5 @@ std::string Attaque::getNomAttaque() const
     default:
         break;
     }
+    return "";
 }

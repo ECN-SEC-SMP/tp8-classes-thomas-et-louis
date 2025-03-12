@@ -1,24 +1,23 @@
 #include "Animal.h"
 
-
 Animal::Animal(int maxX, int maxY)
 {
     srand(time(NULL));
     x = rand() % maxX;
     y = rand() % maxY;
-    this->setAttaque();
 }
 
 Animal::Animal(int maxX, int maxY, int x, int y)
-    :x(x), y(y)
+    : x(x), y(y)
 {
-    if(this->x > maxX){
+    if (this->x > maxX)
+    {
         this->x = maxX;
     }
-    if(this->y > maxY){
+    if (this->y > maxY)
+    {
         this->y = maxY;
     }
-    this->setAttaque();
 }
 
 std::string Animal::getNom() const
@@ -53,6 +52,7 @@ void Animal::setVivant(bool v)
 
 bool Animal::attaque(Animal &a)
 {
+    this->setAttaque();
+    a.setAttaque();
     return this->typeAttaque.resoudreAttaque(a.typeAttaque);
 }
-
