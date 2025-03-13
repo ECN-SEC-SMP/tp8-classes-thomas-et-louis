@@ -109,6 +109,8 @@ public:
 
     bool alreadyFight(Animal * a);
 
+    bool sameAnimal(Animal * a);
+
     /**
      * @brief Set the Attaque type for the Animal
      * 

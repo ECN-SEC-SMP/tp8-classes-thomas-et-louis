@@ -4,8 +4,8 @@
 
 #include "Animal.h"
 
-#define MAX_X 10
-#define MAX_Y 10
+#define MAX_X 15
+#define MAX_Y 15
 
 /**
  * @brief Class representing the Game
@@ -55,4 +55,11 @@ public:
      * @return Animal* Pointer to the animal at the given coordinates, or nullptr if no animal is present
      */
     Animal * getAnimalFromCoordinates(int x, int y);
+
+
+    int getNumberOfSameAnimal(Animal * a);
+
+    bool gameFinished();
+
+    std::string maxPopulation();
 };

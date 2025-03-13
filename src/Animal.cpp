@@ -86,3 +86,8 @@ bool Animal::alreadyFight(Animal * a)
 {
     return this->getFlag() && a->getFlag();
 }
+
+bool Animal::sameAnimal(Animal * a)
+{
+    return this->getNom() == a->getNom() && this->getX() == a->getX() && this->getY() == a->getY() && this != a;
+}

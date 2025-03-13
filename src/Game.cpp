@@ -71,8 +71,30 @@ void Game::playOneTurn()
     }
     for (auto &&animal : this->animals)
     {
+        if(getNumberOfSameAnimal(animal))
+        {
+            for(int i = 0; i < getNumberOfSameAnimal(animal); i++)
+            {
+                if(animal->getNom() == "🐻")
+                {
+                    this->animals.push_back(new Ours(MAX_X, MAX_Y));
+                }
+                if(animal->getNom() == "🐺")
+                {
+                    this->animals.push_back(new Loup(MAX_X, MAX_Y));
+                }
+                if(animal->getNom() == "🪨 ")
+                {
+                    this->animals.push_back(new Pierre(MAX_X, MAX_Y));
+                }
+                if(animal->getNom() == "🦁")
+                {
+                    this->animals.push_back(new Lion(MAX_X, MAX_Y));
+                }
+            }
+        }
         Animal *other_animal = nullptr;
-        while ((other_animal = getAnimalFromCoordinates(animal->getX(), animal->getY())) != nullptr && other_animal != animal && !animal->alreadyFight(other_animal))
+        while ((other_animal = getAnimalFromCoordinates(animal->getX(), animal->getY())) != nullptr && other_animal != animal && !animal->alreadyFight(other_animal) && !animal->sameAnimal(other_animal))
         {
             animal->setFlag();
             other_animal->setFlag();
@@ -112,12 +134,12 @@ void Game::playOneTurn()
 
 void Game::playAllTurns(int wait_time)
 {
-    while (this->animals.size() > 1)
+    while (!gameFinished() && this->animals.size() < 7*MAX_X )
     {
         this->playOneTurn();
         std::this_thread::sleep_for(std::chrono::milliseconds(wait_time));
     }
-    std::cout << "Winner: " << this->animals[0]->getNom() << std::endl;
+    std::cout << "Winner: " << maxPopulation() << std::endl;
 }
 
 
@@ -131,4 +153,50 @@ Animal * Game::getAnimalFromCoordinates(int x, int y)
         }
     }
     return nullptr;
+}
+
+
+int Game::getNumberOfSameAnimal(Animal * a)
+{
+    int nb = 0;
+    for (auto &&other_animal : animals)
+    {
+        if(a->sameAnimal(other_animal))
+        {
+            nb += 1;
+        }
+    }
+    return nb;
+    
+}
+
+bool Game::gameFinished()
+{
+    bool flag = true;
+    Animal * a = this->animals[0];
+    for (auto &&animal : animals)
+    {
+        if(a->getNom() != animal->getNom()) flag = false;
+    }
+    return flag;
+}
+
+std::string Game::maxPopulation()
+{
+    int Ours = 0;
+    int Loup = 0;
+    int Pierre = 0;
+    int Lion = 0;
+    for (auto &&animal : animals)
+    {
+        if(animal->getNom() == "🐻") Ours += 1;
+        if(animal->getNom() == "🐺") Loup += 1;
+        if(animal->getNom() == "🪨 ") Pierre += 1;
+        if(animal->getNom() == "🦁") Lion += 1;
+    }
+    if(Ours == std::max({Ours, Loup, Pierre, Lion})) return "🐻";
+    if(Loup == std::max({Ours, Loup, Pierre, Lion})) return "🐺";
+    if(Pierre == std::max({Ours, Loup, Pierre, Lion})) return "🪨 ";
+    if(Lion == std::max({Ours, Loup, Pierre, Lion})) return "🦁";
+    else return nullptr;
 }
