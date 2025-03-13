@@ -5,6 +5,7 @@ Loup::Loup(int maxX, int maxY)
 {
     this->nom = "🐺";
     this->setVivant(true);
+    this->vie = 1;
 }
 
 void Loup::setAttaque()

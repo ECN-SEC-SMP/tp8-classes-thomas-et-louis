@@ -5,6 +5,7 @@ Ours::Ours(int maxX, int maxY)
 {
     this->nom = "🐻";
     this->setVivant(true);
+    this->vie = 2;
 }
 
 void Ours::setAttaque()

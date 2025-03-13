@@ -34,6 +34,27 @@ int Animal::getY() const
     return y;
 }
 
+int Animal::getLife() const
+{
+    return vie;
+}
+
+int Animal::getFlag() const 
+{
+    return flag;
+}
+
+void Animal::setFlag()
+{
+    this->flag = 1;
+}
+
+void Animal::resetFlag()
+{
+    this->flag = 0;    
+}
+
+
 bool Animal::getVivant() const
 {
     return vivant;
@@ -54,4 +75,14 @@ bool Animal::attaque(Animal &a)
     this->setAttaque();
     a.setAttaque();
     return this->typeAttaque.resoudreAttaque(a.typeAttaque);
+}
+
+void Animal::damage()
+{
+    this->vie -= 1;
+}
+
+bool Animal::alreadyFight(Animal * a)
+{
+    return this->getFlag() && a->getFlag();
 }

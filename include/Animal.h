@@ -17,6 +17,8 @@ protected:
     int x;
     int y;
     bool vivant;
+    int vie;
+    int flag;
     Attaque typeAttaque;
 public:
     /**
@@ -64,6 +66,14 @@ public:
      */
     int getY() const;
 
+
+    int getLife() const;
+
+    int getFlag() const;
+
+    void setFlag();
+
+    void resetFlag();
     /**
      * @brief Check if the Animal is alive
      * 
@@ -94,6 +104,10 @@ public:
      * @return false if the attack is not successful
      */
     bool attaque(Animal &a);
+
+    void damage();
+
+    bool alreadyFight(Animal * a);
 
     /**
      * @brief Set the Attaque type for the Animal

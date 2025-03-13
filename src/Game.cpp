@@ -72,24 +72,41 @@ void Game::playOneTurn()
     for (auto &&animal : this->animals)
     {
         Animal *other_animal = nullptr;
-        while ((other_animal = getAnimalFromCoordinates(animal->getX(), animal->getY())) != nullptr && other_animal != animal)
+        while ((other_animal = getAnimalFromCoordinates(animal->getX(), animal->getY())) != nullptr && other_animal != animal && !animal->alreadyFight(other_animal))
         {
+            animal->setFlag();
+            other_animal->setFlag();
             bool win = animal->attaque(*other_animal);
             std::cout << animal->getNom() << " vs " << other_animal->getNom() << " -> " << animal->getNom() << (win ? " win" : " lose") << std::endl;
+            std::cout << (win ? other_animal->getNom() : animal->getNom()) << " " << (win ? other_animal->getLife() -1 : animal->getLife() -1 ) << " life" << std::endl;
             std::cout << animal->getAttaque().getNomAttaque() << " vs " << other_animal->getAttaque().getNomAttaque() << std::endl;
             std::cout << std::endl;
             if (win)
             {
-                this->animals.erase(std::find(this->animals.begin(), this->animals.end(), other_animal));
+                other_animal->damage();
+                if(!other_animal->getLife())
+                {
+                    this->animals.erase(std::find(this->animals.begin(), this->animals.end(), other_animal));
+                    break;
+                }
             }
             else
             {
-                this->animals.erase(std::find(this->animals.begin(), this->animals.end(), animal));
-                break;
-            }
+                animal->damage();
+                if(!animal->getLife())
+                {
+                    this->animals.erase(std::find(this->animals.begin(), this->animals.end(), animal));
+                    break;
+                }
+            }      
         }
-        
+        for (auto &&animal : this->animals)
+        {
+            animal->resetFlag();
+        }
+
     }
+    
     this->display();
 }
 

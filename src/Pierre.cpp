@@ -8,6 +8,7 @@ Pierre::Pierre(int maxX, int maxY)
 {
     this->nom = "🪨 ";
     this->setVivant(false);
+    this->vie = 1;
 }
 
 void Pierre::setAttaque()
